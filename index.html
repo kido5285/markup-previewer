@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Markdown Previewer</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    </head>
+    <script>
+    let defaultText = `# Welcome to my React Markdown Previewer!
+
+## This is a sub-heading...
+### And here's some other cool stuff:
+
+Heres some code, \`<div></div>\`, between 2 backticks.
+
+\`\`\`
+// this is multi-line code:
+
+function anotherExample(firstLine, lastLine) {
+  if (firstLine == '\`\`\`' && lastLine == '\`\`\`') {
+    return multiLineCode;
+  }
+}
+\`\`\`
+
+You can also make text **bold**... whoa!
+Or _italic_.
+Or... wait for it... **_both!_**
+And feel free to go crazy ~~crossing stuff out~~.
+
+There's also [links](https://www.freecodecamp.com), and
+> Block Quotes!
+
+And if you want to get really crazy, even tables:
+
+Wild Header | Crazy Header | Another Header?
+------------ | ------------- | -------------
+Your content can | be here, and it | can be here....
+And here. | Okay. | I think we get it.
+
+- And of course there are lists.
+  - Some are bulleted.
+     - With different indentation levels.
+        - That look like this.
+
+
+1. And there are numbererd lists too.
+1. Use just 1s if you want!
+1. And last but not least, let's not forget embedded images:
+
+![React Logo w/ Text](https://goo.gl/Umyytc)
+`
+        function firstLoad() {
+            document.getElementById("editor").value = defaultText;
+            document.getElementById("preview").innerHTML = marked(document.getElementById("editor").value)
+        }
+        function editorChange() {
+            let editorValue = document.getElementById("editor").value
+            let previewerValue = document.getElementById("preview")
+            previewerValue.innerHTML = marked(editorValue);
+            marked.setOptions({ breaks: true })
+        }
+    </script>
+    <body class="bg-primary" onload="firstLoad()" style="overflow-y: visible;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 text-center text-light bg-warning">
+                    <h1>Markdown Previewer <h3 class="d-md-none">Note: Preview Is Below</h3></h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 bg-info order-lg-1 order-sm-2 fs-3 pb-lg-5 d-flex flex-column">
+                    <h3 class="text-light text-center my-3">Editor</h3>
+                    <div class="form-group flex-grow-1 d-flex flex-column">
+                        <textarea id="editor" rows="34" onkeyup="editorChange()" class="form-control flex-grow-1"></textarea>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12 bg-success fs-3 order-lg-2 order-sm-1 text-light pb-lg-5">
+                    <h3 class="my-3">Previewer:</h3>
+                    <div id="preview"></div>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/1.2.7/marked.min.js"
+            integrity="sha512-Sl04EWeJ0QgILm83WoubQbZqh71aWLJP8xnswnKSBI37S+ZtrWVtSHmd1YaYYdC1g9PWN1siY7KO2jU3HtCVHA=="
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/1.2.7/marked.js"
+            integrity="sha512-jwq2hFT92zJpzbvtN/lkPADAWkwS7K5RRR9fpdAmCc9+qCbYvjrZ6cxMHuaWx2CDzUc24bk6i4a6zc8Z75/kfQ=="
+            crossorigin="anonymous"></script>
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    </body>
+</html>
